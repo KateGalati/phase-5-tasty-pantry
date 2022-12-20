@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: tasty_pantry_production
-  username: tasty_pantry
-  password: <%= ENV["TASTY_PANTRY_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
