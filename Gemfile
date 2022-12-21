@@ -46,5 +46,9 @@ group :development do
   gem "spring"
 end
 
+# Allows making fetch requests
+gem 'rest-client'
+gem 'json'
+
 
 gem "active_model_serializers", "~> 0.10.13"
