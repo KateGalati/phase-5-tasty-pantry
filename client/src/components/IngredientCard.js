@@ -1,12 +1,12 @@
-import {useState} from 'react'
+import React from 'react'
 import {Card} from 'semantic-ui-react'
 
 const IngredientCard = props => {
-    const {ingredient, onAddPantryIngredient} = props
+    const {ingredient, onAddShoppingIngredient} = props
     // const [addErrors, setAddErrors] = useState([])
 
     const handleAddIngredient = () => {
-        fetch("/add_ingredients", {
+        fetch("/add_shopping_list", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -16,7 +16,7 @@ const IngredientCard = props => {
             }),
           })
           .then(resp => resp.json())
-          .then(newIngredient => onAddPantryIngredient(newIngredient))
+          .then(newIngredient => onAddShoppingIngredient(newIngredient))
         //   .then((r) => {
         //         if (r.ok) {
         //           r.json().then((newIngredient) => {

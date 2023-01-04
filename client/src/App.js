@@ -5,7 +5,6 @@ import LandingPage from './components/LandingPage';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import NavBar from './components/NavBar';
-import UserHome from './components/UserHome';
 import IngredientsPage from './components/IngredientsPage';
 import RecipePage from './components/RecipePage';
 
@@ -38,6 +37,10 @@ function App() {
     setPantry([...pantry, newPantryIngredient])
   }
 
+  const handleAddShoppingIngredient = newShoppingIngredient => {
+    setShoppingList([...shoppingList, newShoppingIngredient])
+  }
+
   const changeSearchIngredients = e => {
     setSearchIngredients(e.target.value)
   }
@@ -48,15 +51,13 @@ function App() {
   }
 
   const handleDeletePantryItem = id => {
-    fetch(`/delete_pantry_ingredients/${id}`, {
-      method: 'DELETE'
-    })
-    .then((r) => {
-      if (r.ok) {
-        setPantry((pantry) =>
-        pantry.filter((ingredient) => ingredient.id !== id))
-      }
-    })
+    const updatedPantryArray = pantry.filter(ingredient => ingredient.id !== id)
+    setPantry(updatedPantryArray)
+  }
+
+  const handleDeleteShoppingItem = id => {
+    const updatedShoppingArray = shoppingList.filter(ingredient => ingredient.id !== id)
+    setShoppingList(updatedShoppingArray)
   }
 
   useEffect(() => {
@@ -89,7 +90,9 @@ function App() {
               changeSearchIngredients={changeSearchIngredients}
               shoppingList={shoppingList}
               onAddPantryIngredient={handleAddPantryIngredient}
+              onAddShoppingIngredient={handleAddShoppingIngredient}
               handleDeletePantryItem={handleDeletePantryItem}
+              handleDeleteShoppingItem={handleDeleteShoppingItem}
               />
             </Route>
             <Route path="/recipes">
