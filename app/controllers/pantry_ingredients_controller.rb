@@ -13,13 +13,13 @@ class PantryIngredientsController < ApplicationController
 
     def destroy
         current_user = User.find_by(id: session[:user_id])
-        pantry_ingredients = current_user.ingredients_in_pantry
-
-
-
-        # pantry_ingredient = PantryIngredient.find_by(id: params[:id])
-        #     pantry_ingredient.destroy
-        #     head :no_content
+        pantry_ingredient = PantryIngredient.find_by(ingredient_id: params[:id], user_id: current_user.id)
+        if current_user && pantry_ingredient
+            pantry_ingredient.destroy
+            head :no_content
+        else 
+            render json: {error: "No user found"}, status: :not_found
+        end
     end
 
     private 

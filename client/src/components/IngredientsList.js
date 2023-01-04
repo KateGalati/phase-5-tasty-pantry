@@ -5,11 +5,11 @@ import ShoppingIngredientCard from './ShoppingIngredientCard'
 import { Card, Input } from 'semantic-ui-react'
 
 const IngredientsList = props => {
-    const {changeSearchIngredients, ingredients, pantry, shoppingList, onAddPantryIngredient, handleDeletePantryItem} = props
+    const {changeSearchIngredients, ingredients, pantry, shoppingList, onAddPantryIngredient, onAddShoppingIngredient, handleDeletePantryItem, handleDeleteShoppingItem} = props
 
-    const renderFullIngredientsList = ingredients.map(ingredient => <IngredientCard key={ingredient.id} ingredient={ingredient} onAddPantryIngredient={onAddPantryIngredient}/>)
-    const renderPantry = pantry.map(pantry_ingredient => <PantryIngredientCard key={pantry_ingredient.id} ingredient={pantry_ingredient} handleDeletePantryItem={handleDeletePantryItem}/>)
-    const renderShoppingList = shoppingList.map(shopping_list_ingredient => <ShoppingIngredientCard key={shopping_list_ingredient.id} ingredient={shopping_list_ingredient}/>)
+    const renderFullIngredientsList = ingredients.map(ingredient => <IngredientCard key={ingredient.id} ingredient={ingredient} onAddShoppingIngredient={onAddShoppingIngredient}/>)
+    const renderPantry = pantry.map(pantry_ingredient => <PantryIngredientCard key={pantry_ingredient.id} ingredient={pantry_ingredient} onAddShoppingIngredient={onAddShoppingIngredient} handleDeletePantryItem={handleDeletePantryItem}/>)
+    const renderShoppingList = shoppingList.map(shopping_list_ingredient => <ShoppingIngredientCard key={shopping_list_ingredient.id} ingredient={shopping_list_ingredient} onAddPantryIngredient={onAddPantryIngredient} handleDeleteShoppingItem={handleDeleteShoppingItem}/>)
 
 
     return (
