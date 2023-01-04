@@ -15,33 +15,49 @@ function App() {
   const [pantry, setPantry] = useState([])
   const [shoppingList, setShoppingList] = useState([])
   const [searchIngredients, setSearchIngredients] = useState('')
-  // const [searchRecipes, setSearchRecipes] = useState('')
 
   useEffect(() => {
     fetch("/ingredients")
       .then((r) => r.json())
       .then(ingredientData => {
         setIngredients(ingredientData)
-        // setPantry(ingredientData.pantry)
-        // setShoppingList(ingredientData.shopping_list)
       })
   }, [])
+
+  useEffect(() => {
+    fetch("/user_ingredients")
+    .then((r) => r.json())
+    .then(ingredientData => {
+      setPantry(ingredientData.pantry)
+      setShoppingList(ingredientData.shopping_list)
+    })
+
+  }, [])
+
+  const handleAddPantryIngredient = newPantryIngredient => {
+    setPantry([...pantry, newPantryIngredient])
+  }
 
   const changeSearchIngredients = e => {
     setSearchIngredients(e.target.value)
   }
 
-  const filteredIngredients = ingredients.filter(ingredient => ingredient.name.toLowerCase().includes(searchIngredients.toLowerCase()))
+  let filteredIngredients = []
+  if (searchIngredients.length > 0) {
+    filteredIngredients = ingredients.filter(ingredient => ingredient.name.toLowerCase().includes(searchIngredients.toLowerCase())) 
+  }
 
-  // const changeSearchRecipes = e => {
-  //   setSearchRecipes(e.target.value)
-  // }
-
-  // const fetchRecipesByIngredients = () => {
-  //   fetch("/find_recipes")
-  //   .then(resp => resp.json())
-  //   .then(console.log)
-  // }
+  const handleDeletePantryItem = id => {
+    fetch(`/delete_pantry_ingredients/${id}`, {
+      method: 'DELETE'
+    })
+    .then((r) => {
+      if (r.ok) {
+        setPantry((pantry) =>
+        pantry.filter((ingredient) => ingredient.id !== id))
+      }
+    })
+  }
 
   useEffect(() => {
     fetch("/me").then((response) => {
@@ -63,13 +79,17 @@ function App() {
         <NavBar setUser={setUser}/>
         <main>
           <Switch>
-            <Route path="/home">
+            {/* <Route path="/home">
               <UserHome user={user}/>
-            </Route>
-            <Route path="/ingredients">
+            </Route> */}
+            <Route path="/home">
               <IngredientsPage 
+              pantry={pantry}
               ingredients={filteredIngredients}
               changeSearchIngredients={changeSearchIngredients}
+              shoppingList={shoppingList}
+              onAddPantryIngredient={handleAddPantryIngredient}
+              handleDeletePantryItem={handleDeletePantryItem}
               />
             </Route>
             <Route path="/recipes">

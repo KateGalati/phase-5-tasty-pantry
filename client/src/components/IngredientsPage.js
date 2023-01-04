@@ -3,17 +3,12 @@ import SearchIngredients from './SearchIngredients'
 import IngredientsList from './IngredientsList'
 import AddIngredient from './AddIngredient'
 
-const IngredientsPage = ({ingredients, changeSearchIngredients}) => {
+
+const IngredientsPage = ({ingredients, changeSearchIngredients, pantry, shoppingList, onAddPantryIngredient, handleDeletePantryItem}) => {
 
     return (
     <div>
-        <div class="ingredients-search-bar">
-        Search Ingredients:
-        <input placeholder='Ingredient Name...' onChange={changeSearchIngredients}></input>
-        </div>
-        <div>
-            <IngredientsList ingredients={ingredients}/>
-        </div>
+        <IngredientsList changeSearchIngredients={changeSearchIngredients} ingredients={ingredients} pantry={pantry} shoppingList={shoppingList} onAddPantryIngredient={onAddPantryIngredient} handleDeletePantryItem={handleDeletePantryItem}/>
     </div>
     )
 

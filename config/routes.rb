@@ -21,7 +21,11 @@ Rails.application.routes.draw do
   delete '/logout', to: "sessions#destroy"
   get '/authorised_user', to: 'users#show'
 
-  get '/user_ingredients', to: 'ingredients#get_all_user_ingredients'
+  get '/user_ingredients', to: "ingredients#get_all_user_ingredients"
+
+  post '/add_ingredients', to: "pantry_ingredients#create"
+
+  delete '/delete_pantry_ingredients', to: "pantry_ingredients#destroy"
 
   post '/fetch_recipes', to: "recipes#fetch_recipes"
 

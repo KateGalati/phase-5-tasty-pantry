@@ -7,4 +7,11 @@ class Ingredient < ApplicationRecord
 
     has_many :pantry_ingredients 
     has_many :users, through: :pantry_ingredients
+
+    def ingredients_in_recipe
+        recipe_ingredients.map { |recipe_ingredient| recipe_ingredient.recipe}
+    end
+
 end
+
+

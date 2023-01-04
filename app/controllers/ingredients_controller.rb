@@ -10,7 +10,6 @@ class IngredientsController < ApplicationController
         users_ingredients = {
             pantry: current_user.ingredients_in_pantry,
             shopping_list: current_user.ingredients_in_shopping_list
-            # all_ingredients: Ingredient.all
         }
         render json: users_ingredients, status: :ok
     end

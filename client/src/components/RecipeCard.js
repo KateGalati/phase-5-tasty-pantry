@@ -1,14 +1,14 @@
 import React from 'react'
 import {Card} from 'semantic-ui-react'
 
-const RecipeCard = ({searchRecipe}) => {
+const RecipeCard = ({recipe}) => {
 
     return (
         <div className='recipe-card'>
             <Card ui fluid card color='olive'>
-                <img src={searchRecipe.image} wrapped ui={false} height={300} width={300} alt="recipe"/>
+                <img src={recipe.image} height={300} width={300} alt="recipe"/>
                 <Card.Content>
-                    <Card.Header>{searchRecipe.title}</Card.Header>
+                    <Card.Header>{recipe.title}</Card.Header>
                 </Card.Content>
             </Card>
         </div>

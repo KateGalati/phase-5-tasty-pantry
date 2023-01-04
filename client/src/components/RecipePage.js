@@ -7,17 +7,30 @@ import RecipeFeature from './RecipeFeature'
 import AddRecipe from './AddRecipe'
 
 const RecipePage = () => {
-    const [searchRecipes, setSearchRecipes] = useState([])
+    const [recipes, setRecipes] = useState([])
+    const [displayRecipes, setDisplayRecipes] = useState([])
+    // const [showMoreRecipes, setShowMoreRecipes] = useState(true)
 
     useEffect(() => {
         fetch("/find_recipes")
         .then(resp => resp.json())
-        .then(setSearchRecipes)
+        .then(data => {
+            setRecipes(data)
+            setDisplayRecipes([...data].sort(() => Math.random() - 0.5).slice(0, 8))
+        })
       }, [])
 
+    const showRandomRecipes = () => {
+        setDisplayRecipes([...recipes].sort(() => Math.random() - 0.5).slice(0, 8))
+    }
+
+    const handleClick = () => {
+        showRandomRecipes()
+    }
+
     return (
-        <div class="recipes-search-bar">
-            <RecipeList searchRecipes={searchRecipes}/>
+        <div className="recipes-search-bar">
+            <RecipeList displayRecipes={displayRecipes} handleClick={handleClick}/>
         </div>
     )
 

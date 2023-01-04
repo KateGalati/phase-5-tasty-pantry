@@ -1,10 +1,10 @@
 import React from "react";
-import IngredientsPage from "./IngredientsPage";
-import RecipePage from "./RecipePage";
-import { Button } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+// import IngredientsPage from "./IngredientsPage";
+// import RecipePage from "./RecipePage";
+// import { Button } from 'semantic-ui-react'
+// import { Link } from 'react-router-dom'
 
-const UserHome = ({user}) => {
+const UserHome = () => {
 
     return (
         <div>

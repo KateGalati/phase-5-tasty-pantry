@@ -1,19 +1,24 @@
 import React from 'react'
 import RecipeCard from './RecipeCard'
-import { Link } from 'react-router-dom'
-import { Card } from 'semantic-ui-react'
+import { Card, Button } from 'semantic-ui-react'
 
 
-const RecipeList = ({searchRecipes}) => {
+const RecipeList = ({displayRecipes, handleClick}) => {
 
-    const renderRecipes = searchRecipes.map(searchRecipe => <Link key={searchRecipe.id}><RecipeCard key={searchRecipe.id} searchRecipe={searchRecipe}/></Link>)
+
+    // const renderRecipes = displayRecipes.map(displayRecipe => <Link key={displayRecipe.id}><RecipeCard key={displayRecipe.id} displayRecipe={displayRecipe}/></Link>)
+
 
     return (
         <div>
-            <h3>Recipes</h3>
-            <Card.Group centered>
-                {renderRecipes}
-            </Card.Group>
+            <div>
+                <Button onClick={handleClick}>More Recipes</Button>
+            </div>
+            <div>
+                <Card.Group centered>
+                {displayRecipes.map(recipe => <RecipeCard key={recipe.id} recipe={recipe}/>)}
+                </Card.Group>
+            </div>
         </div>
     )
 

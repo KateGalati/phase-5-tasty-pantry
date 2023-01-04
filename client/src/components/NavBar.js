@@ -16,16 +16,16 @@ const NavBar = ({setUser}) => {
         <div>
         <Menu>
             <Image src='./TastyPantryLogo.jpg' size='small'/>
-            <Menu.Item>
+            {/* <Menu.Item>
                 <Button as={Link} to="/home" icon labelPosition='left'>
                   <Icon name='home'/>
                   Home
                 </Button>
-            </Menu.Item>
+            </Menu.Item> */}
             <Menu.Item>
-              <Button as={Link} to="/ingredients" icon labelPosition='left'>
-                  <Icon name='food'/>
-                  Ingredients
+              <Button as={Link} to="/home" icon labelPosition='left'>
+                  <Icon name='home'/>
+                  Home
                 </Button>
             </Menu.Item>
             <Menu.Item>

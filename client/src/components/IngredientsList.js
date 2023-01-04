@@ -1,19 +1,45 @@
 import React from 'react'
 import IngredientCard from './IngredientCard'
-import { Link } from 'react-router-dom'
-import { Card } from 'semantic-ui-react'
+import PantryIngredientCard from './PantryIngredientCard'
+import ShoppingIngredientCard from './ShoppingIngredientCard'
+import { Card, Input } from 'semantic-ui-react'
 
 const IngredientsList = props => {
-    const {ingredients} = props
+    const {changeSearchIngredients, ingredients, pantry, shoppingList, onAddPantryIngredient, handleDeletePantryItem} = props
 
-    const renderIngredientsList = ingredients.map(ingredient => <Link key={ingredient.id}><IngredientCard key={ingredient.id} ingredient={ingredient}/></Link>)
+    const renderFullIngredientsList = ingredients.map(ingredient => <IngredientCard key={ingredient.id} ingredient={ingredient} onAddPantryIngredient={onAddPantryIngredient}/>)
+    const renderPantry = pantry.map(pantry_ingredient => <PantryIngredientCard key={pantry_ingredient.id} ingredient={pantry_ingredient} handleDeletePantryItem={handleDeletePantryItem}/>)
+    const renderShoppingList = shoppingList.map(shopping_list_ingredient => <ShoppingIngredientCard key={shopping_list_ingredient.id} ingredient={shopping_list_ingredient}/>)
+
 
     return (
         <div>
-            <h3>Full Ingredient List</h3>
+
+            <div className="ingredients-search-bar">
+                Search Ingredients:
+                <Input placeholder='Ingredient Name...' onChange={changeSearchIngredients}/>
+            </div>
+
             <Card.Group centered>
-                {renderIngredientsList}
+            <div className="pantry-ingredients">
+                <h3>My Pantry Ingredients</h3>
+                    {renderPantry}
+            </div>
             </Card.Group>
+
+            <Card.Group centered>
+            <div className="shopping-list-ingredients">
+                <h3>My Shopping List</h3>
+                    {renderShoppingList}
+            </div>
+            </Card.Group>
+
+            <Card.Group centered itemsPerRow={8}>
+            <div className="full-ingredients-list">
+                    {renderFullIngredientsList}  
+            </div>
+            </Card.Group>
+        
         </div>
     )
 
