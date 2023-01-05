@@ -13,6 +13,7 @@ const RecipeCard = ({recipe, onSelectRecipe}) => {
                 <Card.Content>
                     <Card.Header>{recipe.title}</Card.Header>
                 </Card.Content>
+                <button>Add to Favorites</button>
             </Card>
             {/* <div>
                 <RecipeModal recipe={recipe}/>

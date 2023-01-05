@@ -23,15 +23,14 @@ function App() {
       })
   }, [])
 
-  useEffect(() => {
-    fetch("/user_ingredients")
-    .then((r) => r.json())
-    .then(ingredientData => {
-      setPantry(ingredientData.pantry)
-      setShoppingList(ingredientData.shopping_list)
-    })
-
-  }, [])
+  // useEffect(() => {
+  //   fetch("/user_ingredients")
+  //   .then((r) => r.json())
+  //   .then(ingredientData => {
+  //     setPantry(ingredientData.pantry)
+  //     setShoppingList(ingredientData.shopping_list)
+  //   })
+  // }, [])
 
   const handleAddPantryIngredient = newPantryIngredient => {
     setPantry([...pantry, newPantryIngredient])
@@ -60,17 +59,27 @@ function App() {
     setShoppingList(updatedShoppingArray)
   }
 
-  useEffect(() => {
-    fetch("/me").then((response) => {
-      if (response.ok) {
-        response.json().then((user) => setUser(user));
-      }
-    });
-  }, []);
+  const handleLogIn = user => {
+    setUser(user)
+    fetch("/user_ingredients")
+    .then((r) => r.json())
+    .then(ingredientData => {
+      setPantry(ingredientData.pantry)
+      setShoppingList(ingredientData.shopping_list)
+    })
+  }
+
+  // useEffect(() => {
+  //   fetch("/me").then((response) => {
+  //     if (response.ok) {
+  //       response.json().then((user) => setUser(user));
+  //     }
+  //   });
+  // }, []);
 
   if (!user) return (
   <div>
-  <Login onLogin={setUser} />
+  <Login onLogin={handleLogIn} />
   <LandingPage />
   </div>
   )
