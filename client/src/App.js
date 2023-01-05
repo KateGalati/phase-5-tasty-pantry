@@ -3,7 +3,7 @@ import {useEffect, useState} from 'react'
 import { Switch, Route } from "react-router-dom";
 import LandingPage from './components/LandingPage';
 import Login from './components/Login';
-import Signup from './components/Signup';
+// import Signup from './components/Signup';
 import NavBar from './components/NavBar';
 import IngredientsPage from './components/IngredientsPage';
 import RecipePage from './components/RecipePage';
