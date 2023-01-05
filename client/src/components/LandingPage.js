@@ -5,7 +5,8 @@ const LandingPage = () => {
 
     return (
         <div>
-            <Image src='./TastyPantryLogo.jpg' size='large' centered/>
+            <br />
+            <Image src='./TastyPantryLogo.jpg' size='large' centered rounded/>
         </div>
     )
 

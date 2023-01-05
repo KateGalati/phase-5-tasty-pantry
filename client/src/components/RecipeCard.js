@@ -15,9 +15,6 @@ const RecipeCard = ({recipe, onSelectRecipe}) => {
                 </Card.Content>
                 <button>Add to Favorites</button>
             </Card>
-            {/* <div>
-                <RecipeModal recipe={recipe}/>
-            </div> */}
         </div>
     )
 
