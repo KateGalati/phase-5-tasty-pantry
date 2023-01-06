@@ -2,7 +2,7 @@ import React from 'react'
 import IngredientCard from './IngredientCard'
 import PantryIngredientCard from './PantryIngredientCard'
 import ShoppingIngredientCard from './ShoppingIngredientCard'
-import { Card, Input } from 'semantic-ui-react'
+import { Grid, Card, Input } from 'semantic-ui-react'
 
 const IngredientsList = props => {
     const {changeSearchIngredients, ingredients, pantry, shoppingList, onAddPantryIngredient, onAddShoppingIngredient, handleDeletePantryItem, handleDeleteShoppingItem} = props
@@ -19,26 +19,37 @@ const IngredientsList = props => {
                 Search Ingredients:
                 <Input placeholder='Ingredient Name...' onChange={changeSearchIngredients}/>
             </div>
+            <br />
+            <Grid divided='vertically' centered>
+                <Grid.Row columns={3}>
 
-            <Card.Group centered>
-            <div className="pantry-ingredients">
-                <h3>My Pantry Ingredients</h3>
-                    {renderPantry}
-            </div>
-            </Card.Group>
+                    <Grid.Column>
+                        <Card.Group centered>
+                        <div className="pantry-ingredients">
+                            <h3>My Pantry Ingredients</h3>
+                                {renderPantry}
+                        </div>
+                        </Card.Group>
+                    </Grid.Column>
 
-            <Card.Group centered>
-            <div className="shopping-list-ingredients">
-                <h3>My Shopping List</h3>
-                    {renderShoppingList}
-            </div>
-            </Card.Group>
+                    <Grid.Column>
+                        <Card.Group centered>
+                        <div className="shopping-list-ingredients">
+                            <h3>My Shopping List</h3>
+                                {renderShoppingList}
+                        </div>
+                        </Card.Group>
+                    </Grid.Column>
 
-            <Card.Group centered itemsPerRow={8}>
-            <div className="full-ingredients-list">
-                    {renderFullIngredientsList}  
-            </div>
-            </Card.Group>
+                    <Grid.Column>
+                        <Card.Group centered itemsPerRow={8}>
+                        <div className="full-ingredients-list">
+                                {renderFullIngredientsList}  
+                        </div>
+                        </Card.Group>
+                    </Grid.Column>
+                </Grid.Row>
+            </Grid>
         
         </div>
     )
