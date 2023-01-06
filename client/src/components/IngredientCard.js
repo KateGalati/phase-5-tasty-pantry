@@ -32,6 +32,7 @@ const IngredientCard = props => {
     return (
     <div>
         <div className='all-ingredient-lists'>
+
             <Card onClick={handleAddIngredient}>
                 <Card.Content>
                     <Card.Header>

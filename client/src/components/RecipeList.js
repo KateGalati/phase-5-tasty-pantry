@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import RecipeCard from './RecipeCard'
 import RecipeModal from './RecipeModal'
-import { Card, Button } from 'semantic-ui-react'
+import { Card, Button, Grid } from 'semantic-ui-react'
 
 
 const RecipeList = ({displayRecipes, handleClick, onAddFavorite}) => {
@@ -35,15 +35,14 @@ const RecipeList = ({displayRecipes, handleClick, onAddFavorite}) => {
     }
 
     return (
-        <div>
+        <div> 
+            <Card.Group centered onClick={() => setShow(true)}>
+                {displayRecipes.map(recipe => <RecipeCard onSelectRecipe={onSelectRecipe} handleAddFavorite={handleAddFavorite} key={recipe.id} recipe={recipe} onAddFavorite={onAddFavorite}/>)}
+            </Card.Group>
+            <RecipeModal onClose={() => setShow(false)} show={show} recipe={selectedRecipe}/>
+            <br />
             <div>
                 <Button onClick={handleClick}>More Recipes</Button>
-            </div>
-            <div>
-                <Card.Group centered onClick={() => setShow(true)}>
-                {displayRecipes.map(recipe => <RecipeCard onSelectRecipe={onSelectRecipe} handleAddFavorite={handleAddFavorite} key={recipe.id} recipe={recipe} onAddFavorite={onAddFavorite}/>)}
-                </Card.Group>
-                <RecipeModal onClose={() => setShow(false)} show={show} recipe={selectedRecipe}/>
             </div>
         </div>
     )
