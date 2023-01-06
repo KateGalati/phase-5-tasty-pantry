@@ -6,7 +6,7 @@ import EditRecipe from './EditRecipe'
 import RecipeFeature from './RecipeFeature'
 import AddRecipe from './AddRecipe'
 
-const RecipePage = () => {
+const RecipePage = ({onAddFavorite}) => {
     const [recipes, setRecipes] = useState([])
     const [displayRecipes, setDisplayRecipes] = useState([])
     // const [showMoreRecipes, setShowMoreRecipes] = useState(true)
@@ -30,7 +30,7 @@ const RecipePage = () => {
 
     return (
         <div className="recipes-search-bar">
-            <RecipeList displayRecipes={displayRecipes} handleClick={handleClick}/>
+            <RecipeList displayRecipes={displayRecipes} handleClick={handleClick} onAddFavorite={onAddFavorite}/>
         </div>
     )
 

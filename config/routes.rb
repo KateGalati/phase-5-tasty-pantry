@@ -31,7 +31,11 @@ Rails.application.routes.draw do
 
   post '/fetch_recipes', to: "recipes#fetch_recipes"
 
-  get 'find_recipes', to: "recipes#find_recipes"
+  get '/find_recipes', to: "recipes#find_recipes"
+
+  get '/user_favorites', to: "user_recipes#get_favorite_recipes"
+
+  post '/add_favorites', to: "user_recipes#create"
 
   
   # get '*path',

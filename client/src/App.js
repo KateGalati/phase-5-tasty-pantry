@@ -7,6 +7,7 @@ import Login from './components/Login';
 import NavBar from './components/NavBar';
 import IngredientsPage from './components/IngredientsPage';
 import RecipePage from './components/RecipePage';
+import FavoriteRecipes from './components/FavoriteRecipes';
 
 function App() {
   const [user, setUser] = useState(null)
@@ -14,6 +15,7 @@ function App() {
   const [pantry, setPantry] = useState([])
   const [shoppingList, setShoppingList] = useState([])
   const [searchIngredients, setSearchIngredients] = useState('')
+  const [favorites, setFavorites] = useState([])
 
   useEffect(() => {
     fetch("/ingredients")
@@ -40,6 +42,10 @@ function App() {
     setShoppingList([...shoppingList, newShoppingIngredient])
   }
 
+  const handleAddFavoriteRecipe = newFavorite => {
+    setFavorites([...favorites, newFavorite])
+  }
+
   const changeSearchIngredients = e => {
     setSearchIngredients(e.target.value)
   }
@@ -59,6 +65,11 @@ function App() {
     setShoppingList(updatedShoppingArray)
   }
 
+  const handleDeleteFavoriteRecipe = id => {
+    const updatedFavoritesArray = favorites.filter(favRecipe => favRecipe.id !== id)
+    setFavorites(updatedFavoritesArray)
+  }
+
   const handleLogIn = user => {
     setUser(user)
     fetch("/user_ingredients")
@@ -67,6 +78,12 @@ function App() {
       setPantry(ingredientData.pantry)
       setShoppingList(ingredientData.shopping_list)
     })
+    fetch("/user_favorites")
+    .then(resp => resp.json())
+    .then(recipeData => {
+      setFavorites(recipeData.user_recipe)
+    })
+
   }
 
   // useEffect(() => {
@@ -105,7 +122,10 @@ function App() {
               />
             </Route>
             <Route path="/recipes">
-              <RecipePage />
+              <RecipePage onAddFavorite={handleAddFavoriteRecipe}/>
+            </Route>
+            <Route path='/favorites'>
+              <FavoriteRecipes favorites={favorites} handleDeleteFavoriteRecipe={handleDeleteFavoriteRecipe}/>
             </Route>
           </Switch>
         </main>
